@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<!-- Set 'QudManaged' to wherever your Qud DLL's are stored and remove the '.default' from this file's name -->
+		<QudManaged>.../Caves of Qud/CoQ_Data/Managed/</QudManaged>
+	</PropertyGroup>
+</Project>
