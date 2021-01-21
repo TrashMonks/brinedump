@@ -175,7 +175,7 @@ namespace TrashMonks.Brinedump
 			var minBoost = (int)Math.Ceiling(min * factor * stat.Boost);
 			var maxBoost = (int)Math.Ceiling(max * factor * stat.Boost);
 			if (stat.Boost != 0)
-				formula += DiceForRange(minBoost, maxBoost).First();
+				formula += DiceForRange(minBoost, maxBoost);
 
 			JSON.WriteProperty("Formula", formula);
 			JSON.WriteProperty("Range", min == max ? $"{min}" : $"{min}...{max}");
