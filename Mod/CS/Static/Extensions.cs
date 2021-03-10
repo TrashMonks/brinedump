@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 using XRL.World;
 using XRL.Rules;
@@ -41,14 +42,25 @@ namespace TrashMonks.Brinedump
 			JSON.WriteStartArray();
 		}
 
+		// TODO: Probably better to just hardcode this
 		public static bool TryGetCombatValue(this Statistic stat, out int value) {
 			value = 0;
 
-			var method = typeof(Stats).GetMethod("GetCombat" + stat.Name, BindingFlags.Static | BindingFlags.Public);
-			if (method == null) return false;
+			try {
+				var method = typeof(Stats).GetMethod("GetCombat" + stat.Name, BindingFlags.Static | BindingFlags.Public);
+				if (method == null) return false;
 
-			value = (int)method.Invoke(null, new object[] { stat.Owner });
-			return true;
+				var types = method.GetParameters().Select(x => x.ParameterType);
+				if (types.SequenceEqual(new[] { typeof(GameObject) }))
+					value = (int)method.Invoke(null, new object[] { stat.Owner });
+				else if (types.SequenceEqual(new[] { typeof(GameObject), typeof(bool) }))
+					value = (int)method.Invoke(null, new object[] { stat.Owner, false });
+				else return false;
+
+				return true;
+			} catch {
+				return false;
+			}
 		}
 	}
 }
