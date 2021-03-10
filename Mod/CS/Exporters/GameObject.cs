@@ -54,7 +54,7 @@ namespace TrashMonks.Brinedump
 					obj.pBrain?.PerformReequip(Silent: true);
 					WriteStatistics(obj);
 
-					JSON.WriteObjectEnd();
+					JSON.WriteEndObject();
 					factory.Pool(obj); // Clear & return created object to pool for re-use.
 				} catch (Exception ex) {
 					BDLog("GameObjectExporter:" + blueprint.Name, ex);
@@ -92,7 +92,7 @@ namespace TrashMonks.Brinedump
 			foreach (var mutation in mutations) {
 				JSON.WriteProperty(mutation.Name, mutation.BaseLevel);
 			}
-			JSON.WriteObjectEnd();
+			JSON.WriteEndObject();
 		}
 
 		void WriteSkills(GameObject obj) {
@@ -101,9 +101,9 @@ namespace TrashMonks.Brinedump
 
 			JSON.WriteStartArray("Skills");
 			foreach (var skill in skills) {
-				JSON.Write(skill.Name);
+				JSON.WriteValue(skill.Name);
 			}
-			JSON.WriteArrayEnd();
+			JSON.WriteEndArray();
 		}
 
 		void WriteXPValue(GameObject obj) {
@@ -123,7 +123,7 @@ namespace TrashMonks.Brinedump
 			JSON.WriteProperty("Award >= " + (lt + 5), value / 10);
 			JSON.WriteProperty("Award >= " + (lt + 10), 0);
 
-			JSON.WriteObjectEnd();
+			JSON.WriteEndObject();
 		}
 
 		void WriteStatistics(GameObject obj) {
@@ -133,7 +133,7 @@ namespace TrashMonks.Brinedump
 				WriteStatistic(stat.Value);
 			}
 
-			JSON.WriteObjectEnd();
+			JSON.WriteEndObject();
 		}
 
 		void WriteStatistic(Statistic stat) {
@@ -150,7 +150,7 @@ namespace TrashMonks.Brinedump
 				JSON.WriteProperty("Combat", combat);
 			}
 
-			JSON.WriteObjectEnd();
+			JSON.WriteEndObject();
 		}
 
 		static string[] StatBlacklist = new[] { "*XP", "XPValue" };
@@ -185,7 +185,7 @@ namespace TrashMonks.Brinedump
 				JSON.WriteProperty("BoostMean", (minBoost + maxBoost) / 2f);
 			}
 
-			JSON.WriteObjectEnd();
+			JSON.WriteEndObject();
 		}
 	}
 }

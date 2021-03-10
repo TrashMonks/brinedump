@@ -4,7 +4,7 @@ using System.Reflection;
 
 using XRL.World;
 using XRL.Rules;
-using LitJson;
+using Newtonsoft.Json;
 
 namespace TrashMonks.Brinedump
 {
@@ -13,32 +13,32 @@ namespace TrashMonks.Brinedump
 		public static void WriteProperty(this JsonWriter JSON, string name, object value) => JSON.WriteProperty(name, value.ToString());
 		public static void WriteProperty(this JsonWriter JSON, string name, string value) {
 			JSON.WritePropertyName(name);
-			JSON.Write(value);
+			JSON.WriteValue(value);
 		}
 
 		public static void WriteProperty(this JsonWriter JSON, string name, int value) {
 			JSON.WritePropertyName(name);
-			JSON.Write(value);
+			JSON.WriteValue(value);
 		}
 
 		public static void WriteProperty(this JsonWriter JSON, string name, double value) {
 			JSON.WritePropertyName(name);
-			JSON.Write(value);
+			JSON.WriteValue(value);
 		}
 
 		public static void WriteProperty(this JsonWriter JSON, string name, bool value) {
 			JSON.WritePropertyName(name);
-			JSON.Write(value);
+			JSON.WriteValue(value);
 		}
 
 		public static void WriteStartObject(this JsonWriter JSON, string name) {
 			JSON.WritePropertyName(name);
-			JSON.WriteObjectStart();
+			JSON.WriteStartObject();
 		}
 
 		public static void WriteStartArray(this JsonWriter JSON, string name) {
 			JSON.WritePropertyName(name);
-			JSON.WriteArrayStart();
+			JSON.WriteStartArray();
 		}
 
 		public static bool TryGetCombatValue(this Statistic stat, out int value) {

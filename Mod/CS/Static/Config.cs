@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
-using LitJson;
+using Newtonsoft.Json;
 
 using XRL;
 using XRL.Core;
@@ -34,9 +34,9 @@ namespace TrashMonks.Brinedump
 
 			Write();
 			var stream = new StreamReader(FilePath);
-			var reader = new JsonReader(stream);
+			var reader = new JsonTextReader(stream);
 			while (reader.Read()) {
-				if (reader.Token == JsonToken.PropertyName) {
+				if (reader.TokenType == JsonToken.PropertyName) {
 					if ("Paths".Equals(reader.Value)) ReadPaths(reader);
 				}
 			}
@@ -46,8 +46,8 @@ namespace TrashMonks.Brinedump
 
 		public static void ReadPaths(JsonReader reader) {
 			while (reader.Read()) {
-				if (reader.Token == JsonToken.ObjectEnd) break;
-				if (reader.Token == JsonToken.PropertyName) {
+				if (reader.TokenType == JsonToken.EndObject) break;
+				if (reader.TokenType == JsonToken.PropertyName) {
 					var key = reader.Value as string;
 					reader.Read();
 					_Paths[key] = SubstitutePaths(reader.Value as string);

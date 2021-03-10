@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-using LitJson;
+using Newtonsoft.Json;
 
 using static TrashMonks.Brinedump.Static;
 
@@ -20,15 +20,12 @@ namespace TrashMonks.Brinedump
 			var file = Path.Combine(Directory.FullName, String.Format("{0}.{1:yyyyMMddHHmmss}.json", FileName, DateTime.Now));
 			var writer = new StreamWriter(file);
 			BDLog($"Writing {FileName}...");
-			// This pretty print's pretty garbage, tries to align everything in one pass and inevitably ends up havin' to indent more later.
-			// Switch over to newtonsoft when the netstandard facade is in the mod script domain.
-			// Bloody hell, f#$¤ this pretty print, just use an external tool.
-			JSON = new JsonWriter(writer) { PrettyPrint = false };
-			JSON.WriteObjectStart();
+			JSON = new JsonTextWriter(writer) { Formatting = Formatting.Indented, IndentChar = '\t', Indentation = 1 };
+			JSON.WriteStartObject();
 
 			Write();
 
-			JSON.WriteObjectEnd();
+			JSON.WriteEndObject();
 			//JSON.Close();
 			writer.Flush();
 			writer.Dispose();
