@@ -1,7 +1,7 @@
 # Brinedump
 A mod for [Caves of Qud](http://www.cavesofqud.com/) to extract various configurations of junk for wiki assimilation.
 
-## Installation - [Wiki](https://cavesofqud.gamepedia.com/Modding:Installing_a_mod)
+## Installation - [Wiki](https://wiki.cavesofqud.com/wiki/Modding:Installing_a_mod)
 Place (or create a symbolic link to) the Mod directory in your Caves of Qud Mods folder.
 ##### Windows
 `%USERPROFILE%\AppData\LocalLow\Freehold Games\CavesOfQud\Mods`
