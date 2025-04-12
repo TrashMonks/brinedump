@@ -15,6 +15,7 @@ Bind and use your `wish` key in game and enter any of the following
 `brinedump:gameobjects` - Dump information about GameObjects.  
 `brinedump:textures` - Dump all game textures.  
 
+The output will be placed in the "Trash" folder.
 ## Files
 `.../CavesOfQud/Brinedump.json` - Configuration file for output paths.  
 `.../CavesOfQud/Brinedump.log` - Log of export results.  
