@@ -1,4 +1,5 @@
 using System;
+using Platform.IO;
 
 namespace TrashMonks.Brinedump
 {
@@ -32,7 +33,7 @@ namespace TrashMonks.Brinedump
 		private static object LogLock = new Object();
 		public static void BDLog(string message, Exception e = null) {
 			lock (LogLock) {
-				if (BDLogger == null) BDLogger = new SimpleFileLogger("Brinedump.log");
+				if (BDLogger == null) BDLogger = SimpleFileLogger.Create("Brinedump.log").AwaitResult();
 
 				if (e != null) BDLogger.Error(message + "\n" + e.ToString());
 				else BDLogger.Info(message);
