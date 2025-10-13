@@ -51,11 +51,11 @@ namespace TrashMonks.Brinedump
 					WriteMutations(obj);
 					WriteSkills(obj);
 
-					obj.pBrain?.PerformReequip(Silent: true);
+					obj.Brain?.PerformReequip(Silent: true);
 					WriteStatistics(obj);
 
 					JSON.WriteEndObject();
-					factory.Pool(obj); // Clear & return created object to pool for re-use.
+					obj.Pool(); // Clear & return created object to pool for re-use.
 				} catch (Exception ex) {
 					BDLog("GameObjectExporter:" + blueprint.Name, ex);
 				}
