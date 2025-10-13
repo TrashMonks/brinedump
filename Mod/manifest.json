@@ -3,5 +3,18 @@
 	"title": "{{brainbrine|Brinedump}}",
 	"description": "Export various configurations of junk for wiki assimilation.",
 	"version": "1.0.0",
-	"author": "{{c|Trash Monks}}"
+	"author": "{{c|Trash Monks}}",
+	"directories": [
+		{
+			"Path": "/CS/"
+		},
+		{
+			"Path": "/Pre-Platform/",
+			"Build": "<2.0.211"
+		},
+		{
+			"Path": "/Platform/",
+			"Build": ">=2.0.211"
+		}
+	]
 }

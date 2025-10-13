@@ -1,7 +1,7 @@
 # Brinedump
 A mod for [Caves of Qud](http://www.cavesofqud.com/) to extract various configurations of junk for wiki assimilation.
 
-Tested on game build 2.0.211.7. Does *not* work prior to 2.0.211.
+Tested on game builds 2.0.210.24 and 2.0.211.7.
 
 ## Installation - [Wiki](https://wiki.cavesofqud.com/wiki/Modding:Installing_a_mod)
 Place (or create a symbolic link to) the Mod directory in your Caves of Qud Mods folder.
